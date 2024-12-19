@@ -11,7 +11,8 @@
   ],
   "license": "MIT",
   "author": "moushicheng",
-  "icon": "assets/logo.png",
+  "publisher": "moushicheng",
+  "icon": "assets/git_icon.png",
   "keywords": [
     "git branch",
     "expression",

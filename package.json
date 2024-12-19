@@ -9,6 +9,19 @@
   "categories": [
     "Other"
   ],
+  "license": "MIT",
+  "author": "moushicheng",
+  "icon": "assets/logo.png",
+  "keywords": [
+    "git branch",
+    "expression",
+    "vscode extension"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moushicheng/formily-expression-support"
+  },
+
   "main": "./dist/extension.js",
   "activationEvents": [],
 	"contributes": {

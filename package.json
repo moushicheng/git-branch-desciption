@@ -22,34 +22,47 @@
     "type": "git",
     "url": "https://github.com/moushicheng/formily-expression-support"
   },
-
   "main": "./dist/extension.js",
   "activationEvents": [],
-	"contributes": {
+  "contributes": {
     "menus": {
-  "view/title": [
-    {
-      "command": "GitBranches.refreshEntry",
-      "when": "view == GitBranches",
-      "group": "navigation"
-    }
-  ]
-},
+      "view/title": [
+        {
+          "command": "GitBranches.refreshEntry",
+          "when": "view == GitBranches",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "GitBranches.switchBranch",
+          "when": "view == GitBranches",
+          "group": "inline"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "extension.editBranchDescription",
         "title": "edit branch description"
       },
       {
-				"command": "GitBranches.refreshEntry",
-				"title": "Refresh",
-				"icon": {
-					"light": "assets/light/refresh.svg",
-					"dark": "assets/dark/refresh.svg"
-				}
-			}
-		],
-    
+        "command": "GitBranches.refreshEntry",
+        "title": "Refresh",
+        "icon": {
+          "light": "assets/light/refresh.svg",
+          "dark": "assets/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "GitBranches.switchBranch",
+        "title": "Switch Branch",
+        "icon": {
+          "light": "assets/light/choice.svg",
+          "dark": "assets/dark/choice.svg"
+        }
+      }
+    ],
     "viewsContainers": {
       "activitybar": [
         {
@@ -59,14 +72,14 @@
         }
       ]
     },
-		"views": {
+    "views": {
       "GitBranches": [
         {
           "id": "GitBranches",
           "name": "Git Branches"
         }
-		  ]
-	  }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",

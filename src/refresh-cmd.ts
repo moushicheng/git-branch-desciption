@@ -9,8 +9,6 @@ export function registerRefreshCmd(
   const editDescriptionCommand = vscode.commands.registerCommand(
     "GitBranches.refreshEntry",
     async () => {
-        console.log(111);
-        
       branchProvider.refresh();
     }
 );

@@ -26,14 +26,41 @@
   "main": "./dist/extension.js",
   "activationEvents": [],
 	"contributes": {
-		"commands": [
+    "menus": {
+  "view/title": [
+    {
+      "command": "GitBranches.refreshEntry",
+      "when": "view == GitBranches",
+      "group": "navigation"
+    }
+  ]
+},
+    "commands": [
       {
         "command": "extension.editBranchDescription",
         "title": "edit branch description"
-      }
+      },
+      {
+				"command": "GitBranches.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "assets/light/refresh.svg",
+					"dark": "assets/dark/refresh.svg"
+				}
+			}
 		],
+    
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "GitBranches",
+          "title": "GitBranches",
+          "icon": "assets/git-branch.svg"
+        }
+      ]
+    },
 		"views": {
-      "scm": [
+      "GitBranches": [
         {
           "id": "GitBranches",
           "name": "Git Branches"

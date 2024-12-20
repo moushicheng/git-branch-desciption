@@ -59,7 +59,6 @@ export class BranchProvider
     });
     tree.onDidChangeVisibility((e) => {
       console.log(e); // breakpoint here for debug
-      this.refresh();
     });
     tree.onDidExpandElement((e) => {
       console.log(e); // breakpoint here for debug
@@ -98,14 +97,15 @@ export class BranchProvider
 
       for (const branch of branches) {
         try {
-          let currentBranch = branch.trim();
-          if (currentBranch.startsWith("*")) {
-            currentBranch = currentBranch.split("*").pop()?.trim() || "";
+          let branchName = branch.trim();
+          const isCurrentBranch = branchName.startsWith("*");
+          if (isCurrentBranch) {
+            branchName = branchName.split("*").pop()?.trim() || "";
           }
           let description = "";
           try {
             const { stdout, stderr } = await execPromise(
-              `git config branch.${currentBranch}.description`,
+              `git config branch.${branchName}.description`,
               {
                 cwd: repoPath,
               }
@@ -113,11 +113,16 @@ export class BranchProvider
             description = stdout.slice(0, -1);
           } catch (e) {}
 
-          const labelContent = `${currentBranch} ${description}`;
+          const labelContent = `${isCurrentBranch ? "* " : ""}${branchName} ${description}`;
           const label: vscode.TreeItemLabel = {
-            label: `${currentBranch} ${description}`,
+            label: labelContent,
             highlights: description
-              ? [[currentBranch.length + 1, labelContent.length]]
+              ? [
+                  [
+                    branchName.length + 1 + (isCurrentBranch ? 2 : 0),
+                    labelContent.length,
+                  ],
+                ]
               : undefined, // 高亮当前分支名称
           };
           const treeItem = new vscode.TreeItem(label);
@@ -126,8 +131,8 @@ export class BranchProvider
           // 添加命令以编辑描述
           treeItem.command = {
             command: "extension.editBranchDescription",
-            title: `编辑 ${currentBranch} 的描述`,
-            arguments: [currentBranch],
+            title: `编辑 ${branchName} 的描述`,
+            arguments: [branchName],
           };
           branchItems.push(treeItem);
         } catch (error) {

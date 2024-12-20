@@ -18,7 +18,7 @@ export function registerEditCmd(
         return;
       }
 
-      const repoPath = workspaceFolder.uri.fsPath;
+      const repoPath = workspaceFolder?.uri?.fsPath;
 
       // 获取当前描述
       let currentDescription = "";

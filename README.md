@@ -21,7 +21,7 @@ Give your git branch a user-friendly description!
 
 # How to Use
 
-1. Install the plugin in vscode 
+1. Install the plugin [git branch description] in vscode 
 2. Now, a new tab named gitBranches will appear on the left side of the editor
 3. enjoy!
 

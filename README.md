@@ -1,5 +1,7 @@
 # git-branch-description README
 
+[简体中文](readme/README.zh_CN.md) 
+
 Give your git branch a user-friendly description!
 
 

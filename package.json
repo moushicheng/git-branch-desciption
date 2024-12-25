@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/moushicheng/formily-expression-support"
+    "url": "https://github.com/moushicheng/git-branch-desciption"
   },
   "main": "./dist/extension.js",
   "activationEvents": [],

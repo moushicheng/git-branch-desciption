@@ -4,7 +4,7 @@ Give your git branch a user-friendly description!
 
 ## Features
 
-\!\[feature X\]\(images/feature-x.png\)
+![feature](assets/desc.gif)
 
 ## Requirements
 

@@ -21,6 +21,11 @@ Give your git branch a user-friendly description!
 - Basic version released.
 - You can check and edit branch descriptions in the SCM (Source Control) tab.
 
+### 1.0.0
+
+- now,you can switch branch use switch button
+- you can check this extensions in gitBranches tab
+
 # How to Use
 
 1. Install the plugin [git branch description] in vscode 

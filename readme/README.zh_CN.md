@@ -8,7 +8,7 @@
 
 ## 功能
 
-![feature](assets/desc.gif)
+![feature](../assets/desc.gif)
 
 ## 发布说明
 

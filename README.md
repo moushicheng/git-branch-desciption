@@ -11,8 +11,10 @@ Give your git branch a user-friendly description!
 
 ## Features
 
-![feature](assets/desc.gif)
+- The description exists only locally , will not be pushed to the remote 
 
+- edit your description & switch branch
+![feature](assets/desc.gif)
 
 ## Release Notes
 

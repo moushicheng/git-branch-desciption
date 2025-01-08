@@ -2,7 +2,7 @@
   "name": "git-branch-description",
   "displayName": "Git Branch Description",
   "description": "",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -38,6 +38,11 @@
           "command": "GitBranches.switchBranch",
           "when": "view == GitBranches",
           "group": "inline"
+        },
+        {
+          "command": "GitBranches.removeBranch",
+          "when": "view == GitBranches",
+          "group": "inline"
         }
       ]
     },
@@ -60,6 +65,14 @@
         "icon": {
           "light": "assets/light/choice.svg",
           "dark": "assets/dark/choice.svg"
+        }
+      },
+      {
+        "command": "GitBranches.removeBranch",
+        "title": "Remove Branch",
+        "icon": {
+          "light": "assets/light/remove.svg",
+          "dark": "assets/light/remove.svg"
         }
       }
     ],

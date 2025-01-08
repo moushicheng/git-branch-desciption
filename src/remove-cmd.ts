@@ -5,12 +5,12 @@ import { promisify } from "util";
 
 const execPromise = promisify(exec);
 
-export function registerSwitchCmd(
+export function registerRemoveCmd(
   context: vscode.ExtensionContext,
   branchProvider: BranchProvider
 ) {
   const command = vscode.commands.registerCommand(
-    "GitBranches.switchBranch",
+    "GitBranches.removeBranch",
     async (e) => {
       const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
       const repoPath = workspaceFolder?.uri?.fsPath;
@@ -29,9 +29,20 @@ export function registerSwitchCmd(
         return;
       }
 
-      await execPromise(`git switch ${branchName}`, { cwd: repoPath });
-      vscode.window.showInformationMessage(`成功切换到分支: ${branchName}`);
+      const result = await vscode.window.showWarningMessage(
+        `确定删除分支"${branchName}"吗?`,
+        { modal: true },
+        "Yes",
+        "No"
+      );
+      if (result !== "Yes") {
+        return;
+      }
+
+      await execPromise(`git branch -d ${branchName}`, { cwd: repoPath });
+      vscode.window.showInformationMessage(`成功删除分支: ${branchName}`);
       branchProvider.refresh();
+      return;
     }
   );
 

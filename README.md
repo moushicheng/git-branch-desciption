@@ -28,6 +28,9 @@ Give your git branch a user-friendly description!
 - now,you can switch branch use switch button
 - you can check this extensions in gitBranches tab
 
+### 1.1.0
+- [feature] remove branch 
+
 # How to Use
 
 1. Install the plugin [git branch description] in vscode 

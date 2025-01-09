@@ -39,7 +39,7 @@ export function registerRemoveCmd(
         return;
       }
 
-      await execPromise(`git branch -d ${branchName}`, { cwd: repoPath });
+      await execPromise(`git branch -D ${branchName}`, { cwd: repoPath });
       vscode.window.showInformationMessage(`成功删除分支: ${branchName}`);
       branchProvider.refresh();
       return;

@@ -3,6 +3,7 @@
 import { exec } from "child_process";
 import * as vscode from "vscode";
 import { promisify } from "util";
+import path from "path";
 
 const execPromise = promisify(exec);
 
@@ -20,10 +21,28 @@ export class BranchProvider
 
   refresh() {
     this._onDidChangeTreeData.fire(undefined);
-  }
+  } 
 
   getTreeItem(element: any): vscode.TreeItem {
-    return new vscode.TreeItem(element.label || "Default Label");
+    const item=new vscode.TreeItem(element.label || "Default Label");
+    if(element.label.hasDescription){
+      item.iconPath={
+         // @ts-ignore
+        light:path.join(__dirname,'../assets/light','label.svg'),
+         // @ts-ignore
+        dark:path.join(__dirname,'../assets/dark','label.svg')
+      };
+    }
+
+    if(element.label.isCurrentBranch){
+      item.iconPath ={
+        // @ts-ignore
+        light: path.join(__dirname,'../assets/light','home.svg'),
+        // @ts-ignore
+        dark: path.join(__dirname,'../assets/dark','home.svg')
+      };
+    }
+    return item;
   }
 
   getChildren(element?: any): Thenable<vscode.TreeItem[]> {
@@ -114,7 +133,7 @@ export class BranchProvider
           } catch (e) {}
 
           const labelContent = `${isCurrentBranch ? "* " : ""}${branchName} ${description}`;
-          const label: vscode.TreeItemLabel = {
+          const label: any = {
             label: labelContent,
             highlights: description
               ? [
@@ -124,8 +143,11 @@ export class BranchProvider
                   ],
                 ]
               : undefined, // 高亮当前分支名称
+             isCurrentBranch: isCurrentBranch,
+             hasDescription: description !== "",
           };
           const treeItem = new vscode.TreeItem(label);
+
           treeItem.collapsibleState = vscode.TreeItemCollapsibleState.None; // 不可折叠
 
           // 添加命令以编辑描述
